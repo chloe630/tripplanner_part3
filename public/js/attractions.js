@@ -8,14 +8,42 @@
  */
 
 var attractionsModule = (function () {
-
   // application state
+    //
+    var enhanced = {};
+    $.get('/api/hotels')
+      .then(function(hotels){
+        enhanced.hotels = hotels.map(attractionModule.create);
+        // enhanced.hotels = hotels;
+      })
+      .catch(function(err){
+          console.err(err.message);
+      });
 
-  var enhanced = {
-    hotels: hotels.map(attractionModule.create),
-    restaurants: restaurants.map(attractionModule.create),
-    activities: activities.map(attractionModule.create),
-  };
+
+    $.get('/api/restaurants')
+        .then(function(restaurants){
+            enhanced.restaurants = restaurants.map(attractionModule.create);
+            // enhanced.hotels = hotels;
+        })
+        .catch(function(err){
+            console.err(err.message);
+        });
+
+    $.get('/api/activities')
+        .then(function(activities){
+            enhanced.activities = activities.map(attractionModule.create);
+            // enhanced.activities = activities;
+        })
+        .catch(function(err){
+            console.err(err.message);
+        });
+
+  // enhanced = {
+    // hotels: hotels.map(attractionModule.create),
+    // restaurants: restaurants.map(attractionModule.create),
+    // activities: activities.map(attractionModule.create)
+  // };
 
   // private helper methods (only available inside the module)
 

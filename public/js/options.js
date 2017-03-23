@@ -19,6 +19,7 @@ $(function() {
 
     $.get('/api/restaurants')
         .then(function (restaurants) {
+            console.log(restaurants);
             restaurants.forEach(makeOption, $restaurantSelect);
 
         })

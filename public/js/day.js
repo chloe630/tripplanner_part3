@@ -130,6 +130,16 @@ var dayModule = (function () {
   };
 
   // globally accessible module methods
+  $.get('/api/days')
+      .then(function(days){
+        days.forEach(function(day){
+          day.show();
+        });
+      })
+      .catch(function(err){
+          console.err(err.message);
+      });
+
 
   var publicAPI = {
 
@@ -140,5 +150,6 @@ var dayModule = (function () {
   };
 
   return publicAPI;
+
 
 }());
